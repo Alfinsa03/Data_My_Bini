@@ -1,180 +1,136 @@
 <!DOCTYPE html>
 <html lang="id">
+  
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Springfield adalah MY BINI, titik!" />
-  <title>Springfield — My Wife</title>
+  <title>Archive My Bini</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
-<body>
+
+<body data-char="springfield">
 
   <div class="cursor-line" id="cursorLine"></div>
 
-  <!-- HEADER -->
-  <header>
-    <div class="header-left">
-      <div class="kanji-bg">春田</div>
-      <p class="eyebrow">Alfinsa's Wife</p>
-      <h1>
-        <span>M1903</span>
-        Springfield
-      </h1>
-      <div class="header-meta">
-        <p>Game — <strong>Girls Frontline</strong></p>
-        <p>Tipe — <strong>Rifle</strong></p>
-        <p>Raritas — <strong>5 Star</strong></p>
+  <nav class="site-nav">
+    <div class="nav-brand">My Bini</div>
+    <div class="nav-chars">
+      <button class="nav-btn active" data-target="springfield"><span class="nav-dot"></span>Springfield</button>
+      <button class="nav-btn" data-target="rudolf"><span class="nav-dot"></span>S. Rudolf</button>
+      <button class="nav-btn" data-target="vega"><span class="nav-dot"></span>A. Vega</button>
+      <button class="nav-btn" data-target="azusa"><span class="nav-dot"></span>Shirasu Azusa</button>
+    </div>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       SPRINGFIELD — Layout: text kiri, gambar kanan
+  ══════════════════════════════════════ -->
+  <div class="page active" id="page-springfield">
+
+    <div class="hero-split">
+      <div class="hero-left">
+        <div class="kanji-bg">春田</div>
+        <h1 class="hero-name"><span>M1903</span>Springfield</h1>
+        <div class="hero-meta">
+          <p>Game — <strong>Girls Frontline</strong></p>
+          <p>Tipe — <strong>Rifle (RF)</strong></p>
+          <p>Raritas — <strong>5 Star</strong></p>
+        </div>
       </div>
-      <div class="badge">Milik Alfinsa Selamanya</div>
+      <div class="hero-right">
+        <img src="https://files.catbox.moe/sr5hz8.png" alt="Springfield" />
+      </div>
+      <div class="scroll-hint">scroll</div>
     </div>
 
-    <div class="header-right">
-      <img
-        src="https://files.catbox.moe/e01282.jpg"
-        alt="Springfield"
-        onerror="this.style.background='#141210'; this.style.display='block'; this.style.height='100%';"
-      />
-    </div>
+    <section>
+      <div class="label reveal">statistik</div>
+      <div class="stats reveal">
+        <div class="stat"><span class="stat-val">Springfield</span><span class="stat-key">Nama</span></div>
+        <div class="stat"><span class="stat-val">春田</span><span class="stat-key">Kanji</span></div>
+        <div class="stat"><span class="stat-val">RF</span><span class="stat-key">Tipe</span></div>
+        <div class="stat"><span class="stat-val">Green</span><span class="stat-key">Warna Mata</span></div>
+        <div class="stat"><span class="stat-val">Brown</span><span class="stat-key">Warna Rambut</span></div>
+        <div class="stat"><span class="stat-val">Istri Sah</span><span class="stat-key">Status</span></div>
+      </div>
 
-    <div class="scroll-hint">scroll</div>
-  </header>
+      <div class="label reveal">karakteristik</div>
 
-  <!-- STATS -->
-  <section>
-    <div class="label reveal">statistik</div>
-    <div class="stats reveal">
-      <div class="stat"><span class="stat-val">Springfield</span><span class="stat-key">Nama</span></div>
-      <div class="stat"><span class="stat-val">春田</span><span class="stat-key">Kanji</span></div>
-      <div class="stat"><span class="stat-val">RF</span><span class="stat-key">Tipe</span></div>
-      <div class="stat"><span class="stat-val">Green</span><span class="stat-key">Warna Mata</span></div>
-      <div class="stat"><span class="stat-val">Brown</span><span class="stat-key">Warna Rambut</span></div>
-      <div class="stat"><span class="stat-val">Istri Alfinsa</span><span class="stat-key">Status</span></div>
-    </div>
+      <div class="quote reveal">
+        <p>Commander, Springfield is about to march. You’re OK with your team? Call my name if you miss me, I’ll hear it for sure.</p>
+        <cite>Springfield, Girls Frontline</cite>
+      </div>
+      <p class="desc reveal">Springfield adalah T-Doll tipe Rifle yang dikenal dengan kepribadiannya yang tenang, dewasa, dan sedikit dingin di permukaan, tapi sesungguhnya memiliki hati yang hangat dan penuh perhatian. Kemampuan tempurnya sangat tinggi, terutama dalam jarak jauh, menjadikannya salah satu unit paling berharga di Griffin and Kryuger.</p>
+    </section>
 
-    <div class="label reveal">karakteristik</div>
+    <section>
+      <div class="label reveal">info lengkap</div>
+      <table class="info-table reveal">
+        <tr><td>Game</td><td>Girls Frontline</td></tr>
+        <tr><td>Basis Senjata</td><td>M1903 Springfield</td></tr>
+        <tr><td>Faction</td><td>Griffin and Kryuger</td></tr>
+        <tr><td>Tipe</td><td>Rifle (RF)</td></tr>
+        <tr><td>Raritas</td><td>5 Star (SSR)</td></tr>
+        <tr><td>Mata</td><td>Green</td></tr>
+        <tr><td>Rambut</td><td>Brown</td></tr>
+        <tr><td>Status</td><td>Istri Sah</td></tr>
+      </table>
+    </section>
 
-    <div class="quote reveal">
-      <p>"Kamu ingin aku menemanimu? Baiklah... tapi jangan rewel."</p>
-      <cite>Springfield, Girls Frontline</cite>
-    </div>
+    <section>
+      <div class="label reveal">galeri</div>
+      <div class="gallery reveal">
+        <img src="https://files.catbox.moe/0nj5xh.png" alt="Springfield galeri 1" />
+        <img src="https://files.catbox.moe/uqqqbq.jpg" alt="Springfield galeri 2" />
+        <img src="https://files.catbox.moe/2ri6it.jpg" alt="Springfield galeri 3" />
+        <img src="https://files.catbox.moe/d5o94n.jpg" alt="Springfield galeri 4" />
+        <img src="https://files.catbox.moe/avdw3p.jpg" alt="Springfield galeri 5" />
+        <img src="https://files.catbox.moe/ux9efl.jpg" alt="Springfield galeri 6" />
+      </div>
+    </section>
 
-    <p class="desc reveal">
-      Springfield adalah T-Doll tipe Rifle yang dikenal dengan kepribadiannya yang tenang, dewasa, dan sedikit dingin di permukaan tapi sesungguhnya memiliki hati yang hangat dan penuh perhatian. Ia seperti seorang ibu yang bijaksana di antara para T-Doll lainnya. Kemampuan tempurnya sangat tinggi, terutama dalam jarak jauh, menjadikannya salah satu unit paling berharga di Griffin and Kryuger.
-    </p>
-  </section>
-
-  <!-- INFO -->
-  <section>
-    <div class="label reveal">info lengkap</div>
-    <table class="info-table reveal">
-      <tr><td>Game</td><td>Girls Frontline</td></tr>
-      <tr><td>Basis Senjata</td><td>M1903 Springfield</td></tr>
-      <tr><td>Faction</td><td>Griffin and Kryuger</td></tr>
-      <tr><td>Tipe</td><td>Rifle (RF)</td></tr>
-      <tr><td>Raritas</td><td>5 Star (SSR)</td></tr>
-      <tr><td>Mata</td><td>Green</td></tr>
-      <tr><td>Rambut</td><td>Brown</td></tr>
-      <tr><td>Status</td><td>Istri Alfinsa</td></tr>
-    </table>
-  </section>
-
-  <!-- GALERI ARTWORK -->
-  <section>
-    <div class="label reveal">galeri</div>
-    <div class="gallery reveal">
-      <img src="https://files.catbox.moe/0nj5xh.png" alt="Springfield galeri 1" />
-      <img src="https://files.catbox.moe/uqqqbq.jpg" alt="Springfield galeri 2" />
-      <img src="https://files.catbox.moe/1513de.jpg" alt="Springfield galeri 3" />
-      <img src="https://files.catbox.moe/d5o94n.jpg" alt="Springfield galeri 4" />
-      <img src="https://files.catbox.moe/avdw3p.jpg" alt="Springfield galeri 5" />
-      <img src="https://files.catbox.moe/ux9efl.jpg" alt="Springfield galeri 6" />
-    </div>
-  </section>
-
-  <!-- DOKUMEN RESMI -->
-  <section>
-    <div class="label reveal">dokumen resmi</div>
-
-    <div class="doc-list reveal">
-
-      <!-- GFL 1 -->
-      <div class="doc-card">
-        <div class="doc-tag">GFL 1</div>
-        <div class="doc-inner">
-          <div class="doc-img-wrap">
-            <img src="https://files.catbox.moe/rivo14.png" alt="Dokumen GFL 1" />
+    <section>
+      <div class="label reveal">dokumen resmi</div>
+      <div class="doc-list reveal">
+        <div class="doc-card">
+          <div class="doc-tag">GFL 1</div>
+          <div class="doc-inner">
+            <div class="doc-img-wrap"><img src="https://files.catbox.moe/tf4lza.jpeg" alt="doc GFL1" /></div>
+            <div class="doc-info">
+              <p class="doc-game">Girls Frontline</p>
+              <div class="covenant-fields">
+                <div class="covenant-row"><span class="covenant-key">Commander</span><span class="covenant-val">Tadashi21</span></div>
+                <div class="covenant-row"><span class="covenant-key">Covenant Doll</span><span class="covenant-val">Springfield</span></div>
+                <div class="covenant-row"><span class="covenant-key">Covenant Date</span><span class="covenant-val">2026 / 02 / 08</span></div>
+                <div class="covenant-row"><span class="covenant-key">Oath Date</span><span class="covenant-val">04-26</span></div>
+                <div class="covenant-row"><span class="covenant-key">Affection</span><span class="covenant-val">118 / 150</span></div>
+                <div class="covenant-row"><span class="covenant-key">Level</span><span class="covenant-val">52 — Formation X3</span></div>
+              </div>
+            </div>
           </div>
-          <div class="doc-info">
-            <p class="doc-game">Girls Frontline</p>
-            <div class="covenant-fields">
-              <div class="covenant-row">
-                <span class="covenant-key">Commander</span>
-                <span class="covenant-val">Alfinsa</span>
-              </div>
-              <div class="covenant-row">
-                <span class="covenant-key">Covenant Doll</span>
-                <span class="covenant-val">Springfield</span>
-              </div>
-              <div class="covenant-row">
-                <span class="covenant-key">Covenant Date</span>
-                <span class="covenant-val">2026 / 02 / 08</span>
-              </div>
-              <div class="covenant-row">
-                <span class="covenant-key">Oath Date</span>
-                <span class="covenant-val">04-26</span>
-              </div>
-              <div class="covenant-row">
-                <span class="covenant-key">Affection</span>
-                <span class="covenant-val">118 / 150</span>
-              </div>
-              <div class="covenant-row">
-                <span class="covenant-key">Level</span>
-                <span class="covenant-val">52 — Formation X3</span>
+        </div>
+        <div class="doc-card">
+          <div class="doc-tag doc-tag-2">GFL 2: Exilium</div>
+          <div class="doc-inner">
+            <div class="doc-img-wrap"><img src="https://files.catbox.moe/qm3duz.jpeg" alt="doc GFL2" /></div>
+            <div class="doc-info">
+              <p class="doc-game">Girls Frontline 2: Exilium</p>
+              <div class="covenant-fields">
+                <div class="covenant-row"><span class="covenant-key">Commander</span><span class="covenant-val">Tadashi21</span></div>
+                <div class="covenant-row"><span class="covenant-key">Covenant Doll</span><span class="covenant-val">Springfield</span></div>
+                <div class="covenant-row"><span class="covenant-key">Status</span><span class="covenant-val">Istri Sah</span></div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <p class="covenant-note reveal">Gua bukan karbit!.</p>
+    </section>
 
-      <!-- GFL 2 Exilium -->
-      <div class="doc-card">
-        <div class="doc-tag doc-tag-2">GFL 2: Exilium</div>
-        <div class="doc-inner">
-          <div class="doc-img-wrap">
-            <img src="https://files.catbox.moe/qm3duz.jpeg" alt="Dokumen GFL 2" />
-          </div>
-          <div class="doc-info">
-            <p class="doc-game">Girls Frontline 2: Exilium</p>
-            <div class="covenant-fields">
-              <div class="covenant-row">
-                <span class="covenant-key">Commander</span>
-                <span class="covenant-val">Alfinsa</span>
-              </div>
-              <div class="covenant-row">
-                <span class="covenant-key">Covenant Doll</span>
-                <span class="covenant-val">Springfield</span>
-              </div>
-              <div class="covenant-row">
-                <span class="covenant-key">Status</span>
-                <span class="covenant-val">Istri Alfinsa, tetap</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="covenant-note reveal" style="margin-top:2rem;">
-      Gua bukan karbit!. Covenant sudah terjadi di dua universe sekaligus.
-    </p>
-  </section>
-
-  <!-- STORY -->
-  <div class="story-section">
+   <div class="story-section">
     <section>
       <div class="label reveal">kisah awal kami ketemu</div>
 
@@ -192,13 +148,266 @@
       <p class="story-text reveal">
         dia berkerja sebagai bartender setelah dia pensiun dari kerja militer, dia selalu siap untuk mendengarkan cerita-ceritaku, bahkan ketika aku sedang down atau butuh teman curhat. dia selalu ada untukku. punya cafe sendiri dengan nama Zucchero, tapi sebagai suami yang baik hati, makanya aku modalin dengan pakai dana pribadi. semoga cafenya bisa penuh terus :)
       </p>
-    </section>
+
+    </div>
+
+    <footer>
+      <p>made by Finsa</p>
+      <p>terinspirasi dari <a href="https://mahiru-shiina.vercel.app" target="_blank">mahiru-shiina.vercel.app</a></p>
+    </footer>
   </div>
 
-  <footer>
-    <p>dibuat dengan sepenuh hati oleh Alfinsa</p>
-    <p>terinspirasi dari <a href="https://mahiru-shiina.vercel.app" target="_blank">mahiru-shiina.vercel.app</a></p>
-  </footer>
-  <script src="script.js"></script>
+  <!-- ══════════════════════════════════════
+       SYMBOLI RUDOLF — Layout: full bleed background, text overlay bawah
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-rudolf">
+
+    <div class="hero-fullbleed">
+      <div class="hero-bg-img">
+        <img src="https://files.catbox.moe/9qiwr8.jpg" alt="Symboli Rudolf" onerror="this.style.background='#07060e'" />
+      </div>
+      <div class="hero-overlay">
+        <div class="kanji-bg" style="position:absolute;top:3rem;left:3rem;">皇帝</div>
+        <h1 class="hero-name"><span>Symboli</span>Rudolf</h1>
+        <div class="hero-meta">
+          <p>Game — <strong>Umamusume Pretty Derby</strong></p>
+          <p>Tipe — <strong>Late</strong></p>
+          <p>Julukan — <strong>The Emperor</strong></p>
+        </div>
+      </div>
+      <div class="scroll-hint">scroll</div>
+    </div>
+
+    <section>
+      <div class="label reveal">statistik</div>
+      <div class="stats reveal">
+        <div class="stat"><span class="stat-val">Symboli Rudolf</span><span class="stat-key">Nama</span></div>
+        <div class="stat"><span class="stat-val">皇帝</span><span class="stat-key">Julukan</span></div>
+        <div class="stat"><span class="stat-val">Late</span><span class="stat-key">Tipe</span></div>
+        <div class="stat"><span class="stat-val">Magenta</span><span class="stat-key">Warna Mata</span></div>
+        <div class="stat"><span class="stat-val">Brown</span><span class="stat-key">Warna Rambut</span></div>
+        <div class="stat"><span class="stat-val">Istri Sah</span><span class="stat-key">Status</span></div>
+      </div>
+      <div class="label reveal">karakteristik</div>
+      <div class="quote reveal">
+        <p>"Fortune smiles upon the brave. Let us create a world where all Umamusume can live in bliss"</p>
+        <cite>Symboli Rudolf, Umamusume Pretty Derby</cite>
+      </div>
+      <p class="desc reveal">Symboli Rudolf digambarkan tenang, bijaksana, dan adil dalam menilai sangat peduli sama citra sekolah dan sikapnya tegas ke murid lain. Tapi diam-diam dia khawatir sama murid baru dan pengen banget melindungi mereka, dia termasuk kepala Osis di Tracen Academy. funfact: Rudolf sangat suka bikin jokes tapi ini lebih selera bapak bapak dan ini bikin Air Groove badmood parah (jangan lupakan Nice Nature yang ketawa parah).</p>
+    </section>
+
+    <section>
+      <div class="label reveal">info lengkap</div>
+      <table class="info-table reveal">
+        <tr><td>Game</td><td>Umamusume Pretty Derby</td></tr>
+        <tr><td>Basis</td><td>Symboli Rudolf</td></tr>
+        <tr><td>Tipe Lari</td><td>Late</td></tr>
+        <tr><td>Raritas</td><td>3 Star</td></tr>
+        <tr><td>Mata</td><td>Magenta</td></tr>
+        <tr><td>Rambut</td><td>Brown</td></tr>
+        <tr><td>Status</td><td>Istri Sah</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <div class="label reveal">galeri</div>
+      <div class="gallery reveal">
+        <img src="https://files.catbox.moe/pjtyt1.jpg" alt="Rudolf 1" onerror="this.style.background='#07060e'" />
+        <img src="https://files.catbox.moe/u3f5hg.jpg" alt="Rudolf 2" onerror="this.style.background='#07060e'" />
+        <img src="https://files.catbox.moe/ylf5e5.jpeg" alt="Rudolf 3" onerror="this.style.background='#07060e'" />
+      </div>
+    </section>
+
+    <div class="story-section">
+      <section>
+        <div class="label reveal">kisah kami</div>
+        <p class="story-text reveal">Kisah kita memulai sejak saya download Umamusume disteam dan saat itu Rudolf gak aku tertarik, tapi saat aku mendapatkan dia dan training sama dia, aku langsung jatuh cinta kepada The Emperor yang terkenal galak minta ampun.</p>
+        <p class="story-text reveal">Waktu terus berganti dan aku terus main Umamusume sampai gak sadar bahwa bond level sama Rudolf sudah sampai 5. aku sebagai trainer yang baik hati, berusaha untuk selalu mendukung dan melatihnya agar menjadi yang terbaik, My Luna.</p>
+      </section>
+    </div>
+
+    <footer>
+      <p>made by Finsa</p>
+      <p>terinspirasi dari <a href="https://mahiru-shiina.vercel.app" target="_blank">mahiru-shiina.vercel.app</a></p>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ADMIRE VEGA — Layout: gambar kiri, text kanan
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-vega">
+
+    <div class="hero-mirror">
+      <div class="hero-left-img">
+        <img src="https://files.catbox.moe/y664lp.png" alt="Admire Vega" onerror="this.style.background='#060a10'" />
+      </div>
+      <div class="hero-right-text">
+        <div class="kanji-bg" style="right:3rem;left:auto;">星</div>
+        <h1 class="hero-name"><span>Admire</span>Vega</h1>
+        <div class="hero-meta">
+          <p>Game — <strong>Umamusume Pretty Derby</strong></p>
+          <p>Tipe — <strong>Late</strong></p>
+          <p>Mata — <strong>Pink</strong></p>
+        </div>
+      </div>
+      <div class="scroll-hint">scroll</div>
+    </div>
+
+    <section>
+      <div class="label reveal">statistik</div>
+      <div class="stats reveal">
+        <div class="stat"><span class="stat-val">Admire Vega</span><span class="stat-key">Nama</span></div>
+        <div class="stat"><span class="stat-val">星</span><span class="stat-key">Julukan</span></div>
+        <div class="stat"><span class="stat-val">Late</span><span class="stat-key">Tipe</span></div>
+        <div class="stat"><span class="stat-val">Pink</span><span class="stat-key">Warna Mata</span></div>
+        <div class="stat"><span class="stat-val">Brown</span><span class="stat-key">Warna Rambut</span></div>
+        <div class="stat"><span class="stat-val">Istri Sah</span><span class="stat-key">Status</span></div>
+      </div>
+      <div class="label reveal">karakteristik</div>
+      <div class="quote reveal">
+        <p>"“I swore an oath... to that shining star. I will win even if I am alone." </p>
+        <cite>Admire Vega, Umamusume Pretty Derby</cite>
+      </div>
+      <p class="desc reveal">Admire Vega digambarkan sebagai karakter yang dingin, penyendiri, dan stoic yang nggak suka terlibat urusan orang lain. Dia bawa "beban masa lalu" (trauma masa kecil) dan balapan jadi caranya menebus 'dosa' itu. Kalau dibiarkan sendiri kelamaan, dia dianggap "berbahaya" (downer mood).</p>
+    </section>
+
+    <section>
+      <div class="label reveal">info lengkap</div>
+      <table class="info-table reveal">
+        <tr><td>Game</td><td>Umamusume Pretty Derby</td></tr>
+        <tr><td>Basis</td><td>Admire Vega</td></tr>
+        <tr><td>Tipe Lari</td><td>Late</td></tr>
+        <tr><td>Raritas</td><td> 3 star</td></tr>
+        <tr><td>Mata</td><td>Pink</td></tr>
+        <tr><td>Rambut</td><td>Brown</td></tr>
+        <tr><td>Status</td><td>Istri Sah</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <div class="label reveal">galeri</div>
+      <div class="gallery reveal">
+        <img src="https://files.catbox.moe/dhfsff.jpg" alt="Vega 1" onerror="this.style.background='#060a10'" />
+        <img src="https://files.catbox.moe/8cq1sz.jpg" alt="Vega 2" onerror="this.style.background='#060a10'" />
+        <img src="https://files.catbox.moe/2tmolj.jpg" alt="Vega 3" onerror="this.style.background='#060a10'" />
+        <img src="https://files.catbox.moe/cf3vyl.jpg" alt="Vega 4" onerror="this.style.background='#060a10'" />
+        <img src="https://files.catbox.moe/cm2gac.jpeg" alt="Vega 5" onerror="this.style.background='#060a10'" />
+        <img src="https://files.catbox.moe/twxy5w.jpg" alt="Vega 6" onerror="this.style.background='#060a10'" />
+      </div>
+    </section>
+
+    <div class="story-section">
+      <section>
+        <div class="label reveal">kisah kami</div>
+        <p class="story-text reveal">Kisah kita memulai sejak saya download Umamusume disteam dan saat itu aku blm mendapatkan Admire Vega dan gak aku tertarik awalnya, tapi saat aku mendapatkan dia dan training sama dia, aku langsung jatuh cinta kepada dia yang terkenal sifat stoic, pendiam parah dan orang paling tertutup.</p>
+        <p class="story-text reveal">Aku cari real history Ayabe (real life) dan setelah baca full, aku jadi shock dan terdiam karena Ayabe punya saudara kembar tapi harus dikorbankan buat pertahankan dia. aku jadi kasian sama dia setelah tahu real life history.</p>
+        <p class="story-text reveal">aku jadi sering training bareng dia dan lama lama Ayabe jadi lunak dan lebih terbuka kepada saya, sejak itu, aku jadi berani untuk melindungi dia.</p>
+      </section>
+    </div>
+
+    <footer>
+      <p>made by Finsa</p>
+      <p>terinspirasi dari <a href="https://mahiru-shiina.vercel.app" target="_blank">mahiru-shiina.vercel.app</a></p>
+    </footer>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SHIRASU AZUSA — Layout: gambar penuh atas, text di bawah
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-azusa">
+
+    <div class="hero-portrait">
+      <div class="portrait-img">
+        <img src="https://files.catbox.moe/7bayn7.jpg" alt="Shirasu Azusa" onerror="this.style.background='#0e070a'" />
+      </div>
+      <div class="portrait-text">
+        <h1 class="hero-name"><span>Shirasu</span>Azusa</h1>
+        <div class="hero-meta">
+          <p>Game — <strong>Blue Archive</strong></p>
+          <p>Sekolah — <strong>Trinity General School</strong></p>
+          <p>Club — <strong>Supplementary Lessons Department</strong></p>
+        </div>
+      </div>
+      <div class="scroll-hint">scroll</div>
+    </div>
+
+    <section>
+      <div class="label reveal">statistik</div>
+      <div class="stats reveal">
+        <div class="stat"><span class="stat-val">Shirasu Azusa</span><span class="stat-key">Nama</span></div>
+        <div class="stat"><span class="stat-val">梓</span><span class="stat-key">Kanji</span></div>
+        <div class="stat"><span class="stat-val">Attacker / Middle</span><span class="stat-key">Peran</span></div>
+        <div class="stat"><span class="stat-val">Pink</span><span class="stat-key">Warna Mata</span></div>
+        <div class="stat"><span class="stat-val">Silver</span><span class="stat-key">Warna Rambut</span></div>
+        <div class="stat"><span class="stat-val">Istri Sah</span><span class="stat-key">Status</span></div>
+      </div>
+      <div class="label reveal">karakteristik</div>
+      <div class="quote reveal">
+        <p>"Even if everything is in vain, I will keep on struggling..."</p>
+        <cite>Shirasu Azusa, Blue Archive</cite>
+      </div>
+      <p class="desc reveal">Azusa digambarkan sebagai "ice queen" yang dingin di dasarnya Azusa hasil dari latihan keras di Arius yang membentuknya jadi "senjata". Karena fokus total ke misi, dia nggak punya hobi atau minat, dan nggak berusaha berteman sama teman sekelasnya. Dia jago banget bertarung, paham cara "membunuh" murid lain lewat halo mereka, dan hidup dengan gaya spartan.</p>
+    </section>
+
+    <section>
+      <div class="label reveal">info lengkap</div>
+      <table class="info-table reveal">
+        <tr><td>Game</td><td>Blue Archive</td></tr>
+        <tr><td>Sekolah</td><td>Trinity General School</td></tr>
+        <tr><td>Klub</td><td>Supplementary Lessons Department</td></tr>
+        <tr><td>Tipe</td><td>Striker/ Middle</td></tr>
+        <tr><td>Raritas</td><td>3 star</td></tr>
+        <tr><td>Mata</td><td>Pink</td></tr>
+        <tr><td>Rambut</td><td>Silver</td></tr>
+        <tr><td>Status</td><td>Istri Sah</td></tr>
+      </table>
+    </section>
+
+    <section>
+      <div class="label reveal">galeri</div>
+      <div class="gallery reveal">
+        <img src="https://files.catbox.moe/lg3l45.jpeg" alt="Azusa 1" onerror="this.style.background='#0e070a'" />
+        <img src="https://files.catbox.moe/nfgtjk.jpg" alt="Azusa 2" onerror="this.style.background='#0e070a'" />
+        <img src="https://files.catbox.moe/ucr6mr.jpg" alt="Azusa 3" onerror="this.style.background='#0e070a'" />
+      </div>
+    </section>
+
+    <section>
+      <div class="label reveal">dokumen resmi</div>
+      <div class="doc-list reveal">
+        <div class="doc-card">
+          <div class="doc-tag">Blue Archive</div>
+          <div class="doc-inner">
+            <div class="doc-img-wrap"><img src="https://files.catbox.moe/qu8zqw.jpeg" alt="doc Azusa" onerror="this.style.background='#0e070a'" /></div>
+            <div class="doc-info">
+              <p class="doc-game">Blue Archive</p>
+              <div class="covenant-fields">
+                <div class="covenant-row"><span class="covenant-key">Sensei</span><span class="covenant-val">Alfinsa</span></div>
+                <div class="covenant-row"><span class="covenant-key">Murid</span><span class="covenant-val">Shirasu Azusa</span></div>
+                <div class="covenant-row"><span class="covenant-key">Status</span><span class="covenant-val">Istri Sah, resmi</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="covenant-note reveal">Gua Bukan Karbit!</p>
+    </section>
+
+    <div class="story-section">
+      <section>
+        <div class="label reveal">kisah kami</div>
+        <p class="story-text reveal">Kisah Kami bermulai saat aku main Blue Archive (btw udh pensiun) dan waktu itu masih inget saat main di level 4-10 yang mengharuskan bawa single target warna merah, Shirasu Azusa salah satunya. sejak itu, aku makin naikin bond level dan usahakan in game event.</p>
+        <p class="story-text reveal">Sebagai Sensei, aku harus lindungi murid yang kucintai dan memberikan kehangatan tentang kasih sayang.</p>
+      </section>
+    </div>
+
+    <footer>
+      <p>made by Finsa</p>
+      <p>terinspirasi dari <a href="https://mahiru-shiina.vercel.app" target="_blank">mahiru-shiina.vercel.app</a></p>
+    </footer>
+  </div>
+
+  <script src="assets/script.js"></script>
+
 </body>
 </html>
