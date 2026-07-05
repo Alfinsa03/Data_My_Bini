@@ -1,2 +1,2 @@
-# M1903-Springfield
-website yang menceritakan penjalanan Springfield 
+# Data-My-Bini
+website ini berisikan data-data MBG (My Bini Gue) 
