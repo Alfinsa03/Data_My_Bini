@@ -1,0 +1,608 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    /* ── THEMES ── */
+    [data-char="springfield"] {
+      --accent: #b89a68; --accent-dim: #6b5a3e; --accent-faint: #2a2218;
+      --text: #d4c9b8; --text-dim: #7a6e60; --text-faint: #3a342c;
+      --bg: #080807; --bg2: #0e0d0b; --line: #222018;
+    }
+    [data-char="rudolf"] {
+      --accent: #9b7ec8; --accent-dim: #5a4578; --accent-faint: #1e1528;
+      --text: #cfc4e0; --text-dim: #7a6890; --text-faint: #342c44;
+      --bg: #07060e; --bg2: #0d0b18; --line: #1e1a2e;
+    }
+    [data-char="vega"] {
+      --accent: #6aa8d8; --accent-dim: #3a6890; --accent-faint: #0e1e2e;
+      --text: #c0d4e8; --text-dim: #5a7890; --text-faint: #1e3044;
+      --bg: #060a10; --bg2: #0a1018; --line: #141e2e;
+    }
+    [data-char="azusa"] {
+      --accent: #c88aaa; --accent-dim: #785468; --accent-faint: #281820;
+      --text: #e0c8d4; --text-dim: #907080; --text-faint: #3a2830;
+      --bg: #0e070a; --bg2: #160b10; --line: #261418;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      font-size: 13px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+      animation: pagefade 1s ease forwards;
+      transition: background 0.6s, color 0.6s;
+    }
+ 
+    @keyframes pagefade { from { opacity: 0; } to { opacity: 1; } }
+ 
+    /* ── NAV ── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: stretch;
+      height: 48px;
+      background: rgba(6,6,5,0.88);
+      backdrop-filter: blur(16px);
+      border-bottom: 0.5px solid var(--line);
+      transition: border-color 0.5s;
+    }
+ 
+    .nav-brand {
+      display: flex; align-items: center;
+      padding: 0 1.5rem;
+      font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--text-faint);
+      border-right: 0.5px solid var(--line);
+      white-space: nowrap;
+      transition: color 0.5s, border-color 0.5s;
+    }
+ 
+    .nav-chars { display: flex; flex: 1; }
+ 
+    .nav-btn {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--text-faint);
+      background: none; border: none;
+      border-right: 0.5px solid var(--line);
+      cursor: pointer;
+      transition: color 0.3s, background 0.3s, border-color 0.5s;
+      position: relative;
+    }
+ 
+    .nav-btn:last-child { border-right: none; }
+ 
+    .nav-btn::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px; background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s, background 0.5s;
+    }
+ 
+    .nav-btn.active { color: var(--accent); }
+    .nav-btn.active::after { transform: scaleX(1); }
+    .nav-btn:hover { background: rgba(255,255,255,0.025); }
+ 
+    .nav-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.5; }
+ 
+    /* ── PAGES ── */
+    .page { display: none; opacity: 0; transition: opacity 0.4s; }
+    .page.active { display: block; opacity: 1; }
+ 
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s, transform 0.7s; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+    /* ── SHARED SECTION ── */
+    section {
+      max-width: 900px; margin: 0 auto;
+      padding: 5rem 3rem;
+      border-top: 0.5px solid var(--line);
+      transition: border-color 0.5s;
+    }
+ 
+    .label {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--accent-dim);
+      margin-bottom: 2.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: color 0.5s;
+    }
+ 
+    .label::after { content: ''; flex: 1; height: 0.5px; background: var(--line); transition: background 0.5s; }
+ 
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.5px; background: var(--line);
+      margin-bottom: 4rem; transition: background 0.5s;
+    }
+ 
+    .stat { background: var(--bg); padding: 2rem 1.5rem; text-align: center; transition: background 0.3s; }
+    .stat:hover { background: var(--bg2); }
+ 
+    .stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 400; color: var(--accent);
+      display: block; margin-bottom: 0.5rem; opacity: 0;
+      transition: color 0.5s;
+    }
+ 
+    .stat-key { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--text-faint); transition: color 0.5s; }
+ 
+    .quote {
+      border-left: 1px solid var(--accent-dim);
+      padding: 1rem 2rem; margin-bottom: 3rem;
+      transition: border-color 0.4s;
+    }
+    .quote:hover { border-color: var(--accent); }
+    .quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--text-dim); line-height: 1.6; margin-bottom: 0.75rem; }
+    .quote cite { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-faint); font-style: normal; }
+ 
+    .desc { color: var(--text-dim); line-height: 2; margin-bottom: 3rem; max-width: 620px; transition: color 0.5s; }
+ 
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table tr { border-bottom: 0.5px solid var(--line); transition: background 0.2s, border-color 0.5s; }
+    .info-table tr:first-child { border-top: 0.5px solid var(--line); }
+    .info-table tr:hover { background: rgba(255,255,255,0.015); }
+    .info-table td { padding: 1rem 0; vertical-align: top; }
+    .info-table td:first-child { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-faint); width: 35%; padding-right: 2rem; transition: color 0.5s; }
+    .info-table td:last-child { color: var(--text-dim); transition: color 0.5s; }
+ 
+    .gallery {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 0.5px; background: var(--line);
+      margin-bottom: 2rem; overflow: hidden; transition: background 0.5s;
+    }
+    .gallery img { width: 100%; height: 380px; object-fit: cover; object-position: top center; filter: sepia(15%) brightness(0.8) contrast(1.05); display: block; transition: filter 0.6s, transform 0.6s; }
+    .gallery img:hover { filter: sepia(5%) brightness(0.95); transform: scale(1.03); }
+ 
+    .doc-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); transition: background 0.5s; }
+    .doc-card { background: var(--bg); position: relative; transition: background 0.5s; }
+    .doc-tag { position: absolute; top: 1rem; left: 1rem; font-size: 9px; letter-spacing: 4px; text-transform: uppercase; color: var(--accent-dim); border: 0.5px solid var(--accent-dim); padding: 4px 12px; background: rgba(8,8,7,0.9); z-index: 2; transition: color 0.5s, border-color 0.5s; }
+    .doc-tag-2 { color: #8a9ab8; border-color: #4a5a78; }
+    .doc-inner { display: grid; grid-template-columns: 1fr 340px; }
+    .doc-img-wrap { overflow: hidden; }
+    .doc-img-wrap img { width: 100%; height: 240px; object-fit: cover; object-position: center; display: block; filter: sepia(15%) brightness(0.8) contrast(1.05); transition: filter 0.5s, transform 0.5s; }
+    .doc-img-wrap:hover img { filter: sepia(0%) brightness(0.95); transform: scale(1.02); }
+    .doc-info { border-left: 0.5px solid var(--line); padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; transition: border-color 0.5s; }
+    .doc-game { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-dim); padding-top: 1.5rem; transition: color 0.5s; }
+    .covenant-fields { display: flex; flex-direction: column; }
+    .covenant-row { display: flex; align-items: baseline; gap: 1.5rem; padding: 0.6rem 0; border-bottom: 0.5px solid var(--accent-faint); transition: border-color 0.5s; }
+    .covenant-row:last-child { border-bottom: none; }
+    .covenant-key { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent-dim); width: 140px; flex-shrink: 0; background: rgba(255,255,255,0.03); padding: 2px 8px; transition: color 0.5s; }
+    .covenant-val { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--text-dim); transition: color 0.5s; }
+    .covenant-note { font-size: 13px; color: var(--text-faint); line-height: 2; max-width: 560px; border-left: 1px solid var(--line); padding-left: 1.5rem; margin-top: 2rem; transition: color 0.5s, border-color 0.5s; }
+ 
+    .story-section { background: var(--bg2); transition: background 0.5s; }
+    .story-section section { background: var(--bg2); transition: background 0.5s; }
+    .story-text { color: var(--text-faint); line-height: 2.2; max-width: 620px; transition: color 0.5s; }
+    .story-text + .story-text { margin-top: 1.5rem; }
+    .divider { text-align: center; font-size: 10px; letter-spacing: 10px; color: var(--accent-faint); margin: 2.5rem 0; animation: pulse-dim 4s ease-in-out infinite; transition: color 0.5s; }
+    @keyframes pulse-dim { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+ 
+    footer { border-top: 0.5px solid var(--line); padding: 3rem; display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; transition: border-color 0.5s; }
+    footer p { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--text-faint); }
+    footer a { color: var(--accent-dim); text-decoration: none; transition: color 0.3s; }
+    footer a:hover { color: var(--accent); }
+ 
+    /* ── CURSOR LINE ── */
+    .cursor-line { position: fixed; top: 0; left: 0; width: 1px; height: 100vh; background: linear-gradient(to bottom, transparent, rgba(184,154,104,0.1), transparent); pointer-events: none; z-index: 9999; opacity: 0; transition: opacity 0.3s; }
+ 
+    /* ════════════════════════════════════════════
+       LAYOUT 1 — SPRINGFIELD
+       text kiri, gambar kanan
+    ════════════════════════════════════════════ */
+    .hero-split {
+      position: relative; width: 100%;
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden; padding-top: 48px;
+    }
+ 
+    .hero-split .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 3rem 4rem 3rem; position: relative; z-index: 2;
+    }
+ 
+    .hero-split .hero-right { position: relative; overflow: hidden; }
+ 
+    .hero-split .hero-right img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; display: block;
+      filter: sepia(20%) brightness(0.85);
+      animation: imgdrift 20s ease-in-out infinite alternate;
+    }
+ 
+    @keyframes imgdrift { from { transform: scale(1.06) translateY(0); } to { transform: scale(1.06) translateY(-12px); } }
+ 
+    .hero-split .hero-right::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to right, var(--bg) 0%, transparent 50%);
+      z-index: 1; transition: background 0.6s;
+    }
+ 
+    .hero-split .hero-right::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 30%);
+      z-index: 1; transition: background 0.6s;
+    }
+ 
+    /* ════════════════════════════════════════════
+       LAYOUT 2 — RUDOLF
+       gambar full bleed background, text overlay
+    ════════════════════════════════════════════ */
+    .hero-fullbleed {
+      position: relative; width: 100%;
+      min-height: 100vh;
+      display: flex; align-items: flex-end;
+      overflow: hidden; padding-top: 48px;
+    }
+ 
+    .hero-fullbleed .hero-bg-img {
+      position: absolute; inset: 0;
+    }
+ 
+    .hero-fullbleed .hero-bg-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; display: block;
+      filter: sepia(15%) brightness(0.55) contrast(1.1);
+      animation: imgdrift 20s ease-in-out infinite alternate;
+    }
+ 
+    .hero-fullbleed .hero-bg-img::after {
+      content: ''; position: absolute; inset: 0;
+      background:
+        linear-gradient(to top, var(--bg) 0%, rgba(0,0,0,0.75) 40%, rgba(0,0,0,0.2) 70%, transparent 100%),
+        linear-gradient(to right, rgba(0,0,0,0.5) 0%, transparent 60%);
+      transition: background 0.6s;
+    }
+ 
+    .hero-fullbleed .hero-overlay {
+      position: relative; z-index: 2;
+      width: 100%; max-width: 900px; margin: 0 auto;
+      padding: 0 3rem 5rem;
+    }
+ 
+    .hero-fullbleed .hero-eyebrow {
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+    }
+ 
+    .hero-fullbleed .hero-name {
+      text-shadow: 0 2px 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.5);
+    }
+ 
+    .hero-fullbleed .hero-meta p {
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
+    }
+ 
+    .hero-fullbleed .hero-overlay .badge-row {
+      display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem;
+    }
+ 
+    /* ════════════════════════════════════════════
+       LAYOUT 3 — ADMIRE VEGA
+       gambar kiri, text kanan (mirror)
+    ════════════════════════════════════════════ */
+    .hero-mirror {
+      position: relative; width: 100%;
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      overflow: hidden; padding-top: 48px;
+    }
+ 
+    .hero-mirror .hero-left-img { position: relative; overflow: hidden; }
+ 
+    .hero-mirror .hero-left-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; display: block;
+      filter: sepia(20%) brightness(0.85);
+      animation: imgdrift 20s ease-in-out infinite alternate;
+    }
+ 
+    .hero-mirror .hero-left-img::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to left, var(--bg) 0%, transparent 50%);
+      z-index: 1; transition: background 0.6s;
+    }
+ 
+    .hero-mirror .hero-left-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 30%);
+      z-index: 1; transition: background 0.6s;
+    }
+ 
+    .hero-mirror .hero-right-text {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 0 3rem 4rem 3rem; position: relative; z-index: 2;
+    }
+ 
+    /* ════════════════════════════════════════════
+       LAYOUT 4 — SHIRASU AZUSA
+       gambar centered atas, content di bawah
+    ════════════════════════════════════════════ */
+    .hero-portrait {
+      position: relative; width: 100%;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      overflow: hidden; padding-top: 48px;
+    }
+ 
+    .hero-portrait .portrait-img {
+      position: relative;
+      height: 75vh;
+      overflow: hidden;
+    }
+ 
+    .hero-portrait .portrait-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: top center; display: block;
+      filter: sepia(10%) brightness(0.8) contrast(1.05);
+      animation: imgdrift 20s ease-in-out infinite alternate;
+    }
+ 
+    .hero-portrait .portrait-img::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--bg) 0%, transparent 50%);
+      transition: background 0.6s;
+    }
+ 
+    .hero-portrait .portrait-text {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto;
+      padding: 3rem 3rem 4rem;
+      width: 100%;
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 0;
+      margin-top: -8rem;
+    }
+ 
+    /* ── SHARED HERO ELEMENTS ── */
+    .hero-eyebrow {
+      font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--accent-dim); margin-bottom: 1.5rem; transition: color 0.5s;
+    }
+ 
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 6rem); font-weight: 300;
+      line-height: 0.95; color: #f0e8d8; letter-spacing: -2px; margin-bottom: 1.5rem;
+    }
+ 
+    .hero-name span {
+      display: block; font-style: italic; font-size: 0.5em;
+      color: var(--accent); letter-spacing: 2px; margin-bottom: 0.25rem; transition: color 0.5s;
+    }
+ 
+    .hero-meta { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 2rem; }
+    .hero-meta p { font-size: 11px; color: var(--text-faint); letter-spacing: 1px; transition: color 0.5s; }
+    .hero-meta p strong { color: var(--text-dim); font-weight: 400; transition: color 0.5s; }
+ 
+    .badge {
+      display: inline-block;
+      border: 0.5px solid var(--accent-dim); color: var(--accent-dim);
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      padding: 6px 18px; width: fit-content;
+      transition: background 0.3s, color 0.3s, border-color 0.5s;
+    }
+    .badge:hover { background: rgba(255,255,255,0.05); color: var(--accent); }
+ 
+    .kanji-bg {
+      position: absolute; top: 3rem; left: 3rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 12rem;
+      color: rgba(184,154,104,0.04); line-height: 1;
+      user-select: none; pointer-events: none;
+      animation: kanji-float 8s ease-in-out infinite alternate;
+    }
+ 
+    @keyframes kanji-float { from { transform: translateY(0); opacity: 0.6; } to { transform: translateY(-20px); opacity: 1; } }
+ 
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--text-faint); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 3;
+    }
+ 
+    .scroll-hint::after { content: ''; width: 0.5px; height: 40px; background: var(--accent-faint); animation: scrollline 2s ease-in-out infinite; transition: background 0.5s; }
+    @keyframes scrollline { 0%, 100% { opacity: 0.3; transform: scaleY(1); transform-origin: top; } 50% { opacity: 1; transform: scaleY(0.4); transform-origin: top; } }
+ 
+    /* ── RUDOLF SPECIFIC ── */
+    .hero-fullbleed .hero-name { font-size: clamp(4rem, 9vw, 8rem); }
+    .hero-fullbleed .hero-eyebrow { letter-spacing: 8px; }
+ 
+    /* ── AZUSA SPECIFIC ── */
+    .hero-portrait .hero-name { font-size: clamp(3.5rem, 7vw, 6.5rem); }
+ 
+    /* ══ TABLET (max 1024px) ══ */
+    @media (max-width: 1024px) {
+      /* hero split: proporsi gambar lebih besar */
+      .hero-split { grid-template-columns: 1fr 1.2fr; }
+      .hero-mirror { grid-template-columns: 1.2fr 1fr; }
+      .hero-split .hero-left, .hero-mirror .hero-right-text { padding: 0 2rem 3rem; }
+ 
+      /* hero name lebih kecil */
+      .hero-name { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+ 
+      /* gallery 2 kolom */
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .gallery img { height: 280px; }
+ 
+      /* doc inner */
+      .doc-inner { grid-template-columns: 1fr 280px; }
+ 
+      /* stats tetap 3 kolom */
+      section { padding: 4rem 2rem; }
+ 
+      /* kanji lebih kecil */
+      .kanji-bg { font-size: 9rem; }
+ 
+      /* nav brand lebih kecil */
+      .nav-brand { font-size: 9px; padding: 0 1rem; }
+      .nav-btn { font-size: 9px; letter-spacing: 2px; }
+    }
+ 
+    /* ══ MOBILE (max 640px) ══ */
+    @media (max-width: 640px) {
+ 
+      /* ── NAV mobile ── */
+      .nav-brand { display: none; }
+      .nav-chars {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+      }
+      .nav-chars::-webkit-scrollbar { display: none; }
+      .nav-btn {
+        font-size: 9px;
+        letter-spacing: 1px;
+        flex: 0 0 auto;
+        padding: 0 1rem;
+        white-space: nowrap;
+        min-width: 80px;
+      }
+      .nav-dot { display: none; }
+ 
+      /* ── HERO SPLIT (Springfield) ──
+         gambar atas, text bawah */
+      .hero-split {
+        grid-template-columns: 1fr;
+        grid-template-rows: 55vw auto;
+        min-height: auto;
+      }
+      .hero-split .hero-left {
+        order: 2;
+        padding: 2rem 1.5rem 3rem;
+        justify-content: flex-start;
+      }
+      .hero-split .hero-right {
+        order: 1;
+        height: 65vw;
+      }
+      .hero-split .hero-right::before {
+        background: linear-gradient(to top, var(--bg) 0%, transparent 60%);
+      }
+      .hero-split .hero-right::after {
+        background: none;
+      }
+ 
+      /* ── HERO FULLBLEED (Rudolf) ──
+         text lebih besar, padding disesuaikan */
+      .hero-fullbleed { min-height: 100svh; }
+      .hero-fullbleed .hero-bg-img img { object-position: 20% 25% ; filter: sepia(15%) brightness(0.45) contrast(1.1); }
+      .hero-fullbleed .hero-bg-img::after {
+        background:
+          linear-gradient(to top, var(--bg) 0%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0.4) 80%, transparent 100%),
+          linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 80%);
+      }
+      .hero-fullbleed .hero-overlay {
+        padding: 0 1.5rem 4rem;
+        max-width: 100%;
+      }
+      .hero-fullbleed .hero-name { font-size: 3.5rem; }
+ 
+      /* ── HERO MIRROR (Vega) ──
+         gambar atas, text bawah */
+      .hero-mirror {
+        grid-template-columns: 1fr;
+        grid-template-rows: 55vw auto;
+        min-height: auto;
+      }
+      .hero-mirror .hero-left-img {
+        order: 1;
+        height: 65vw;
+      }
+      .hero-mirror .hero-left-img::before {
+        background: linear-gradient(to top, var(--bg) 0%, transparent 60%);
+      }
+      .hero-mirror .hero-left-img::after {
+        background: none;
+      }
+      .hero-mirror .hero-right-text {
+        order: 2;
+        padding: 2rem 1.5rem 3rem;
+        justify-content: flex-start;
+      }
+ 
+      /* ── HERO PORTRAIT (Azusa) ──
+         tinggi gambar dikurangi */
+      .hero-portrait {
+        min-height: 100svh;
+        flex-direction: row;
+        align-items: flex-end;
+      }
+      .hero-portrait .portrait-img {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+      }
+      .hero-portrait .portrait-img img {
+        height: 100%;
+        object-position: center 20%;
+        filter: sepia(10%) brightness(0.55) contrast(1.1);
+      }
+      .hero-portrait .portrait-img::after {
+        background:
+          linear-gradient(to top, var(--bg) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.2) 75%, transparent 100%),
+          linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 70%);
+      }
+      .hero-portrait .portrait-text {
+        position: relative;
+        z-index: 2;
+        margin-top: 0;
+        padding: 0 1.5rem 4rem;
+        width: 100%;
+      }
+      
+      /* ── SHARED HERO ── */
+      .hero-name { font-size: 2.75rem; letter-spacing: -1px; }
+      .hero-eyebrow { font-size: 9px; letter-spacing: 3px; }
+      .kanji-bg { font-size: 5rem; top: 1.5rem; left: 1.5rem; }
+      .scroll-hint { display: none; }
+ 
+      /* ── SECTIONS ── */
+      section { padding: 3rem 1.25rem; }
+ 
+      /* ── STATS ── */
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stat { padding: 1.5rem 1rem; }
+      .stat-val { font-size: 1.15rem; }
+ 
+      /* ── QUOTE ── */
+      .quote { padding: 1rem 1.25rem; }
+      .quote p { font-size: 1rem; }
+ 
+      /* ── GALLERY ── */
+      .gallery { grid-template-columns: 1fr; }
+      .gallery img { height: 72vw; }
+ 
+      /* ── DOC ── */
+      .doc-inner { grid-template-columns: 1fr; }
+      .doc-img-wrap img { height: 52vw; }
+      .doc-info { border-left: none; border-top: 0.5px solid var(--line); padding: 1.25rem; }
+      .doc-game { padding-top: 0.5rem; }
+      .covenant-key { width: 110px; }
+ 
+      /* ── FOOTER ── */
+      footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+ 
+      /* ── MISC ── */
+      .cursor-line { display: none; }
+      .covenant-note { max-width: 100%; }
+      .info-table td:first-child { width: 40%; }
+    }
+ 
+    /* ══ VERY SMALL (max 380px) ══ */
+    @media (max-width: 380px) {
+      .hero-name { font-size: 2.25rem; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stat-val { font-size: 1rem; }
+      .nav-btn { min-width: 70px; font-size: 8px; }
+    }

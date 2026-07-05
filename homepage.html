@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homepage My Bini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%; height: 100%;
+      background: #080807;
+      color: #d4c9b8;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    body { animation: fadein 1.2s ease forwards; }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+    /* ── INTRO ── */
+    .intro {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 4rem 2rem;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .intro-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 50%, rgba(100,80,50,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .intro-line {
+      width: 40px; height: 0.5px;
+      background: #3a342c;
+      margin: 0 auto 2rem;
+    }
+
+    .intro-eyebrow {
+      font-size: 10px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #3a342c;
+      margin-bottom: 1.5rem;
+    }
+
+    .intro-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 300;
+      line-height: 0.9;
+      color: #f0e8d8;
+      letter-spacing: -3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-title span {
+      display: block;
+      font-style: italic;
+      font-size: 0.45em;
+      color: #6b5a3e;
+      letter-spacing: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .intro-sub {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3a342c;
+      margin-top: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .scroll-cue {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #2a2218;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .scroll-cue::after {
+      content: '';
+      width: 0.5px; height: 40px;
+      background: #2a2218;
+      animation: scrollline 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollline {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); transform-origin: top; }
+      50%       { opacity: 1;   transform: scaleY(0.4); transform-origin: top; }
+    }
+
+    /* ── CARDS ── */
+    .cards-section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cards-label {
+      font-size: 10px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: #3a342c;
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .cards-label::before,
+    .cards-label::after {
+      content: '';
+      flex: 1; height: 0.5px;
+      background: #1a1612;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: #1a1612;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      aspect-ratio: 3/4;
+      background: #0a0908;
+    }
+
+    .card-img {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      filter: sepia(20%) brightness(0.7) contrast(1.05);
+      transition: transform 0.8s cubic-bezier(0.22,1,0.36,1), filter 0.6s ease;
+    }
+
+    .card:hover .card-img {
+      transform: scale(1.06);
+      filter: sepia(5%) brightness(0.85) contrast(1.05);
+    }
+
+    .card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+      transition: background 0.5s;
+    }
+
+    .card:hover .card-overlay {
+      background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    }
+
+    /* accent line per karakter */
+    .card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--c-accent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .card:hover::after { transform: scaleX(1); }
+
+    .card[data-char="springfield"] { --c-accent: #b89a68; }
+    .card[data-char="rudolf"]      { --c-accent: #9b7ec8; }
+    .card[data-char="vega"]        { --c-accent: #6aa8d8; }
+    .card[data-char="azusa"]       { --c-accent: #c88aaa; }
+
+    .card-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1.25rem;
+      z-index: 2;
+    }
+
+    .card-franchise {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--c-accent);
+      opacity: 0.7;
+      margin-bottom: 0.5rem;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover .card-franchise { opacity: 1; }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #f0e8d8;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .card-name span {
+      display: block;
+      font-style: italic;
+      font-size: 0.6em;
+      color: var(--c-accent);
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    .card-arrow {
+      position: absolute;
+      top: 1.25rem; right: 1.25rem;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: var(--c-accent);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .card:hover .card-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* placeholder card (no image) */
+    .card-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1a1612;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* ── FOOTER ── */
+    .landing-footer {
+      border-top: 0.5px solid #1a1612;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .landing-footer p {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #2a2218;
+    }
+
+    /* ── CURSOR LINE ── */
+    .cursor-line {
+      position: fixed; top: 0; left: 0;
+      width: 1px; height: 100vh;
+      background: linear-gradient(to bottom, transparent, rgba(184,154,104,0.08), transparent);
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .card { aspect-ratio: 4/5; }
+    }
+
+    @media (max-width: 640px) {
+      .intro-title { letter-spacing: -1px; }
+      .cards-section { padding: 4rem 1.25rem; }
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .card { aspect-ratio: 3/4; }
+      .card-name { font-size: 1.3rem; }
+      .landing-footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .cursor-line { display: none; }
+    }
+
+    @media (max-width: 380px) {
+      .cards { grid-template-columns: 1fr; }
+      .card { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor-line" id="cursorLine"></div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-bg"></div>
+    <div class="intro-line"></div>
+    <p class="intro-eyebrow">Alfinsa Pudya Pratama or Tadashi</p>
+    <h1 class="intro-title">
+      <span>Archive</span>
+      My Bini
+    </h1>
+    <p class="intro-sub">4 karakter &nbsp;·&nbsp; 3 universe &nbsp;·&nbsp; 1 Suami</p>
+    <div class="scroll-cue">pilih</div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards-section">
+    <div class="cards-label">pilih karakter</div>
+
+    <div class="cards">
+
+      <!-- Springfield -->
+      <a class="card" data-char="springfield" href="index.html?char=springfield">
+        <img class="card-img"
+          src="https://files.catbox.moe/ck1t3p.jpg"
+          alt="Springfield"
+          onerror="this.style.display='none'"
+        />
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <p class="card-franchise">Girls Frontline</p>
+          <p class="card-name">
+            <span>M1903</span>
+            Springfield
+          </p>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <!-- Symboli Rudolf -->
+      <a class="card" data-char="rudolf" href="index.html?char=rudolf">
+        <img class="card-img"
+          src="https://files.catbox.moe/u3f5hg.jpg"
+          alt="Symboli Rudolf"
+          onerror="this.style.display='none'"
+        />
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <p class="card-franchise">Umamusume Pretty Derby</p>
+          <p class="card-name">
+            <span>Symboli</span>
+            Rudolf
+          </p>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <!-- Admire Vega -->
+      <a class="card" data-char="vega" href="index.html?char=vega">
+        <img class="card-img"
+          src="https://files.catbox.moe/twxy5w.jpg"
+          alt="Admire Vega"
+          onerror="this.style.display='none'"
+        />
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <p class="card-franchise">Umamusume Pretty Derby</p>
+          <p class="card-name">
+            <span>Admire</span>
+            Vega
+          </p>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+      <!-- Shirasu Azusa -->
+      <a class="card" data-char="azusa" href="index.html?char=azusa">
+        <img class="card-img"
+          src="https://files.catbox.moe/nfgtjk.jpg"
+          alt="Shirasu Azusa"
+          onerror="this.style.display='none'"
+        />
+        <div class="card-overlay"></div>
+        <div class="card-content">
+          <p class="card-franchise">Blue Archive</p>
+          <p class="card-name">
+            <span>Shirasu</span>
+            Azusa
+          </p>
+        </div>
+        <span class="card-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+  <footer class="landing-footer">
+    <p>Made with love by Finsa</p>
+    <p>4 bini, 1 hati</p>
+  </footer>
+
+  <script>
+    // cursor line
+    const line = document.getElementById('cursorLine');
+    let lineX = 0, currentX = 0;
+    document.addEventListener('mousemove', e => { lineX = e.clientX; line.style.opacity = '1'; });
+    document.addEventListener('mouseleave', () => { line.style.opacity = '0'; });
+    (function animateLine() {
+      currentX += (lineX - currentX) * 0.08;
+      line.style.transform = `translateX(${currentX}px)`;
+      requestAnimationFrame(animateLine);
+    })();
+  </script>
+
+</body>
+</html>
